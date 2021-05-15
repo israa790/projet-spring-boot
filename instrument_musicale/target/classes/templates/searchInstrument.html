@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+ xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+ layout:decorator="template">
+<link rel="stylesheet" type="text/css"
+href="/webjars/bootstrap/4.3.1/css/bootstrap.min.css" />
+<head>
+<meta charset="utf-8">
+<title>Ajout des Produits</title>
+</head>
+<body>
+<div layout:fragment="Mycontent">
+<div class="container mt-5">
+<div class="card">
+ <div class="card-header">
+ Modifier des Instruments 
+ </div>
+ <div class="card-body">
+
+<form th:action="@{SearchInstruments}">
+Filter <input type="number" name="keyword"/>
+<input type="submit" value="search"/>
+<input type="button" value="clear"/>
+</form>
+
+ <table class="table table-striped">
+ <tr>
+
+ <th>ID</th><th>Nom Instrument</th><th>Prix</th>
+ </tr>
+ <tr th:each="p:${instruments.content}">
+
+
+  <td th:text="${p.typeInstrument}"></td>
+</tr>
+ </table>
+
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>
