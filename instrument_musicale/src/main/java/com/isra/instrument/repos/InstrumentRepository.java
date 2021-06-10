@@ -12,6 +12,13 @@ import com.isra.instrument.entities.TypeInstrument;
 
 @RepositoryRestResource(path = "rest")
 public interface InstrumentRepository extends JpaRepository<Instrument, Long> {
+	
+	@Query("SELECT f FROM Instrument f WHERE f.nomInstrument LIKE %?1%"
+			+"Or f.prixInstrument Like %?1%"
+			+"Or f.typeInstrument Like %?1%")
+    public List<Instrument> findAll(String keyword);
+	
+	
 
 	List<Instrument> findByNomInstrument(String nom);
 	 List<Instrument> findByNomInstrumentContains(String nom); 

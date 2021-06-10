@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.isra.instrument.entities.Instrument;
 import com.isra.instrument.entities.TypeInstrument;
 import com.isra.instrument.service.InstrumentService;
+import org.springframework.ui.Model;
 
 @Controller
 public class InstrumentController {
@@ -27,6 +28,16 @@ public class InstrumentController {
 
 		@Autowired
 		InstrumentService instrumentService;
+		
+		@RequestMapping("/search")
+		public String search(Model model, @Param("key") String key) {
+
+			List<Instrument> list = instrumentService.listAll(key);
+			model.addAttribute("list", list);
+			model.addAttribute("nomInstrument", key);
+
+			return "search";
+		}
 		
 		@RequestMapping("/showCreate")
 		public String showCreate(ModelMap modelMap)

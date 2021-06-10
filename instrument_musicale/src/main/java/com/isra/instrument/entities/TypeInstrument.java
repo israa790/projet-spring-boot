@@ -64,12 +64,22 @@ public class TypeInstrument {
 	public void setDateCreation(Date dateCreation) {
 		this.dateCreation = dateCreation;
 	}
-	public List<Instrument> getInstruments() {
+	public TypeInstrument(String nomType, @PastOrPresent Date dateCreation) {
+		super();
+		this.nomType = nomType;
+		this.dateCreation = dateCreation;
+	}
+	@Override
+	public String toString() {
+		return "TypeInstrument [idType=" + idType + ", nomType=" + nomType + ", dateCreation=" + dateCreation + "]";
+	}
+	
+	/*public List<Instrument> getInstruments() {
 		return instruments;
 	}
 	public void setInstruments(List<Instrument> instruments) {
 		this.instruments = instruments;
-	}
+	}*/
 	
 	
 }

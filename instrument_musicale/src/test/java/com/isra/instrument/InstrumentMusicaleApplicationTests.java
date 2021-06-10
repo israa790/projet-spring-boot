@@ -11,6 +11,7 @@ import org.springframework.data.domain.Page;
 import com.isra.instrument.entities.Instrument;
 import com.isra.instrument.entities.TypeInstrument;
 import com.isra.instrument.repos.InstrumentRepository;
+import com.isra.instrument.repos.TypeInterfaceRep;
 import com.isra.instrument.service.InstrumentService;
 
 
@@ -21,6 +22,9 @@ class InstrumentMusicaleApplicationTests {
 
 	@Autowired
 	private InstrumentRepository instrumentRepository;
+	
+	@Autowired
+	private TypeInterfaceRep typeInterfaceRep;
 	
 	@Autowired
 	private InstrumentService instrumentService;
@@ -153,4 +157,44 @@ class InstrumentMusicaleApplicationTests {
 	}
 	}
 	
+	
+	///test Type desinstruments
+	@Test
+	public void testCreateTyepInstrument()
+	{
+		TypeInstrument Type=new TypeInstrument("Corde2",new Date());
+		typeInterfaceRep.save(Type);
+	}
+	
+	@Test
+	public void testFindTypeInstrument()
+	{
+		TypeInstrument p=typeInterfaceRep.findById(1L).get();
+		System.out.println(p);
+	}
+	
+	@Test
+	public void testUpdateTypeInstrument()
+	{
+		TypeInstrument p =typeInterfaceRep.findById(5L).get();
+		p.setNomType("Cat2");
+	//erreur d'exéction de fct update
+		typeInterfaceRep.save(p);
+		System.out.println(p);
+	}
+	
+	@Test
+	public void testDeleteTypeInstrumentById()
+	{
+		typeInterfaceRep.deleteById(6L);
+	}
+	
+	@Test
+	public void testFindAllTypeInstrument()
+	{
+		List<TypeInstrument> type= typeInterfaceRep.findAll();	
+		for(TypeInstrument p:type)
+		System.out.println(p);
+		
+	}
 }

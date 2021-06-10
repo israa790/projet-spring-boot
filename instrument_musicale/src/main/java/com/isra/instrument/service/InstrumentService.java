@@ -21,7 +21,9 @@ public interface InstrumentService {
 	Instrument getInstrument(Long id);
 	List <Instrument> getAllInstruments();
 	
+	@Query("select f from Instrument f where f.nomInstrument = ?1")
 	List<Instrument> findByNomInstrument(String nom);
+	
 	 List<Instrument> findByNomInstrumentContains(String nom); 
 	
 	 List<Instrument> findByNomPrix ( String nom, Double prix);
@@ -38,4 +40,7 @@ public interface InstrumentService {
 
 	
 	  List<TypeInstrument> findAllType(String keyword);
+	  
+	  List<Instrument> listAll(String key);	
+	
 }

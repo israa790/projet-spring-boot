@@ -17,6 +17,16 @@ public class InstrumentServiceImpl implements InstrumentService {
 	@Autowired
 	InstrumentRepository instrumentRepository;
 	
+	@Autowired
+	private InstrumentRepository repo;
+	
+	public List<Instrument> listAll(String keyword) {
+		if (keyword != null) {
+			return repo.findAll(keyword);
+		}
+		return repo.findAll();
+	}
+	
 	
 	
 	@Override
@@ -101,5 +111,7 @@ public class InstrumentServiceImpl implements InstrumentService {
 		
 		return instrumentRepository.findAllType(keyword);
 	}
+
+	
 
 }
